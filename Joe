@@ -1,0 +1,52 @@
+#Represents a book with title, author, and genre information.
+class Book:
+    def __init__(self, title, author, genre):
+        self.title = title
+        self.author = author
+        self.genre = genre
+        
+#Represents a library that manages a collection of books.
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book):
+        self.books.append(book)
+
+    def search_by_genre(self, target_genre):
+        matching_books = [book for book in self.books if book.genre == target_genre]
+        return matching_books
+
+    def get_available_genres(self):
+        return list(set(book.genre for book in self.books))
+
+# Adding books to the library
+my_library = Library()
+
+my_library.add_book(Book("Dune", "Frank Herbert", "Sci-Fi"))
+my_library.add_book(Book("The Hobbit", "J.R.R. Tolkien", "Fantasy"))
+my_library.add_book(Book("Neuromancer", "William Gibson", "Sci-Fi"))
+my_library.add_book(Book("Gone Girl", "Gillian Flynn", "Thriller"))
+my_library.add_book(Book("Foundation", "Isaac Asimov", "Sci-Fi"))
+my_library.add_book(Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "Fantasy"))
+my_library.add_book(Book("Brave New World", "Aldous Huxley", "Dystopian"))
+my_library.add_book(Book("The Martian", "Andy Weir", "Sci-Fi"))
+my_library.add_book(Book("Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "Non-Fiction"))
+my_library.add_book(Book("The Immortal Life of Henrietta Lacks", "Rebecca Skloot", "Non-Fiction"))
+my_library.add_book(Book("Lonesome Dove", "Larry McMurtry", "Western"))
+my_library.add_book(Book("Blood Meridian", "Cormac McCarthy", "Western"))
+
+# Displaying available genres
+available_genres = my_library.get_available_genres()
+print("Available genres:", ", ".join(available_genres))
+
+# Prompting the user for their choice
+user_choice = input("Enter the genre you want to search for: ")
+
+# Searching for books by the user's chosen genre
+matching_books = my_library.search_by_genre(user_choice)
+
+# Displaying the results
+print(f"Books in the {user_choice} genre:")
+for book in matching_books:
+    print(f"Title: {book.title}, Author: {book.author}")
